@@ -1,8 +1,12 @@
 // Página Form: formulario controlado con useState
 // Demuestra: controlled inputs, onChange, onSubmit, validación, renderizado condicional
+// Al enviar, transmite el mensaje por BroadcastChannel → lo recibe /messages en tiempo real
 
 import { useState } from 'react';
 import styles from './Form.module.css';
+
+// Mismo nombre de canal que Messages.jsx → ambas páginas comparten el canal
+const CHANNEL_NAME = 'techstore-messages';
 
 // Estado inicial del formulario → facilita el reset
 const INITIAL_FORM = {
@@ -74,7 +78,21 @@ function Form() {
     try {
       // Simula petición async a la API (1.2s)
       await new Promise((resolve) => setTimeout(resolve, 1200));
-      // En un caso real: await apiClient.post('/contact', form);
+
+      // Emite el mensaje por BroadcastChannel → /messages lo recibe en tiempo real
+      const channel = new BroadcastChannel(CHANNEL_NAME);
+      channel.postMessage({
+        id:       Date.now(),
+        type:     'CHAT_MESSAGE',
+        text:     `[${form.subject.toUpperCase()}] ${form.message}`,
+        name:     `${form.name} (${form.email})`,
+        senderId: 'form-page',
+        ts:       new Date().toISOString(),
+        own:      false,
+        fromForm: true,
+      });
+      channel.close(); // canal de un solo uso, cerrar inmediatamente
+
       setStatus('success');
       setForm(INITIAL_FORM);
       setErrors({});

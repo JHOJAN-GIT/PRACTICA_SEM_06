@@ -1,200 +1,99 @@
-/* index.css — estilos globales de la SPA TechStore PRO */
+/* index.css — estilos globales — paleta warm (amarillo / gris / blanco / crema) */
 
-/* ===== RESET + BOX MODEL ===== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ===== VARIABLES CSS (Design tokens) ===== */
 :root {
-  /* Colores primarios */
-  --color-bg:         #080812;
-  --color-bg-2:       #0d0d1a;
-  --color-surface:    rgba(255, 255, 255, 0.03);
-  --color-border:     rgba(255, 255, 255, 0.08);
+  /* Fondo */
+  --bg:           #f5f0e8;
+  --bg-2:         #ede8de;
+  --bg-card:      #ffffff;
+  --bg-card-alt:  #faf7f2;
 
-  /* Paleta de acentos */
-  --color-purple:     #8b5cf6;
-  --color-purple-dim: rgba(139, 92, 246, 0.2);
-  --color-cyan:       #06b6d4;
-  --color-pink:       #ec4899;
-  --color-amber:      #f59e0b;
-  --color-green:      #22c55e;
-  --color-red:        #ef4444;
+  /* Acentos amarillo/ámbar */
+  --amber:        #f59e0b;
+  --amber-light:  #fcd34d;
+  --amber-dark:   #d97706;
+  --amber-dim:    rgba(245, 158, 11, 0.15);
+
+  /* Grises cálidos */
+  --gray-1:       #1c1917;
+  --gray-2:       #44403c;
+  --gray-3:       #78716c;
+  --gray-4:       #a8a29e;
+  --gray-5:       #d6d3d1;
+  --gray-6:       #f5f5f4;
+
+  /* Bordes */
+  --border:       rgba(120, 113, 108, 0.2);
+  --border-dark:  rgba(120, 113, 108, 0.35);
 
   /* Texto */
-  --color-text-1: #f1f5f9;
-  --color-text-2: #94a3b8;
-  --color-text-3: #64748b;
-  --color-text-4: #475569;
+  --text-1: #1c1917;
+  --text-2: #44403c;
+  --text-3: #78716c;
+  --text-4: #a8a29e;
 
-  /* Gradiente principal */
-  --gradient-main: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #ec4899 100%);
-  --gradient-btn:  linear-gradient(135deg, #7c3aed, #0891b2);
+  /* Gradientes */
+  --gradient-main: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-btn:  linear-gradient(135deg, #f59e0b, #ea580c);
+  --gradient-hero: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fef9ee 100%);
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
 
   /* Tipografía */
   --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
-  /* Spacing */
-  --radius-sm:  8px;
-  --radius-md:  12px;
-  --radius-lg:  16px;
-  --radius-xl:  24px;
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 
-  /* Transiciones */
   --transition: 0.2s ease;
 }
 
-/* ===== BASE ===== */
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text-2);
+  background-color: var(--bg);
+  color: var(--text-2);
   line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Patrón de fondo sutil */
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
   min-height: 100vh;
 }
 
-/* ===== TIPOGRAFÍA ===== */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-text-1);
-  font-weight: 700;
-  line-height: 1.2;
-}
+h1,h2,h3,h4,h5,h6 { color: var(--text-1); font-weight: 700; line-height: 1.2; }
+p { line-height: 1.7; }
+a { color: var(--amber-dark); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--amber); }
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; }
 
-p {
-  line-height: 1.7;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--gray-5); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-4); }
 
-a {
-  color: var(--color-purple);
-  text-decoration: none;
-  transition: color var(--transition);
-}
+::selection { background: rgba(245, 158, 11, 0.25); color: var(--gray-1); }
 
-a:hover {
-  color: #a78bfa;
-}
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-button {
-  font-family: inherit;
-}
-
-/* ===== SCROLLBAR personalizado ===== */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
-}
-
-/* ===== SELECCIÓN DE TEXTO ===== */
-::selection {
-  background: rgba(139, 92, 246, 0.3);
-  color: #f1f5f9;
-}
-
-/* ===== FOCUS VISIBLE (accesibilidad) ===== */
-:focus-visible {
-  outline: 2px solid var(--color-purple);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ===== UTILIDADES GLOBALES ===== */
-
-/* Contenedor centrado */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Texto gradiente */
-.text-gradient {
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Badge genérico */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: var(--color-purple-dim);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: #a78bfa;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.3rem 0.8rem;
-  border-radius: 99px;
-  letter-spacing: 0.04em;
-}
-
-/* Línea divisoria */
-.divider {
-  border: none;
-  border-top: 1px solid var(--color-border);
-  margin: 2rem 0;
-}
-
-/* Animación de entrada */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.animate-fade-in { animation: fadeInUp 0.4s ease forwards; }
 
-.animate-fade-in {
-  animation: fadeInUp 0.4s ease forwards;
-}
-
-/* ===== RESPONSIVE helpers ===== */
-@media (max-width: 768px) {
-  :root {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    font-size: 14px;
-  }
-}
+@media (max-width: 768px) { :root { font-size: 15px; } }
+@media (max-width: 480px) { :root { font-size: 14px; } }

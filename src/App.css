@@ -1,5 +1,9 @@
 /* App.css — layout raíz de la aplicación */
 
+html, body, #root {
+  height: 100%;
+}
+
 .app-layout {
   min-height: 100vh;
   display: flex;
@@ -7,5 +11,12 @@
 }
 
 .app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cualquier página que sea hija directa ocupa el espacio disponible */
+.app-content > * {
   flex: 1;
 }
