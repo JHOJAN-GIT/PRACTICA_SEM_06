@@ -1,122 +1,51 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+// App.jsx: configuración de enrutamiento con BrowserRouter
+// Estructura: BrowserRouter > Navbar > Routes > páginas > Footer
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Layout components
+import Navbar   from './components/Navbar';
+import Footer   from './components/Footer';
+
+// Pages (lazy loading opcional según guía — aquí importación directa)
+import Home     from './pages/Home';
+import Products from './pages/Products';
+import Form     from './pages/Form';
+import NotFound from './pages/NotFound';
+
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    // BrowserRouter: usa la History API del navegador (sin hash en la URL)
+    // → cumple requisito de la guía: preferir BrowserRouter sobre HashRouter
+    <BrowserRouter>
+      {/* Layout persistente: Navbar siempre visible en todas las rutas */}
+      <div className="app-layout">
+        <Navbar />
 
-      <div className="ticks"></div>
+        {/* Routes: solo renderiza la primera <Route> que coincide con la URL */}
+        <div className="app-content">
+          <Routes>
+            {/* Ruta exacta: / → Home */}
+            <Route path="/"         element={<Home />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {/* Ruta: /products → lista de productos con consumo de API */}
+            <Route path="/products" element={<Products />} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            {/* Ruta: /form → formulario controlado de contacto */}
+            <Route path="/form"     element={<Form />} />
+
+            {/* Catch-all: cualquier ruta no definida → NotFound (404) */}
+            <Route path="*"         element={<NotFound />} />
+          </Routes>
+        </div>
+
+        {/* Footer persistente en todas las rutas */}
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

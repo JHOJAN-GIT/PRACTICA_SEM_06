@@ -1,0 +1,100 @@
+/* Footer.module.css */
+
+.footer {
+  background: #05050f;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  margin-top: auto;
+  padding: 3rem 1.5rem 1.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Brand */
+.footerBrand {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+}
+
+.footerDesc {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Columnas */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.colTitle {
+  color: #a78bfa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem;
+}
+
+.colList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.colList li {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.authorName {
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+}
+
+/* Barra inferior */
+.bottom {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.techStack {
+  color: #6d28d9;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 640px) {
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
